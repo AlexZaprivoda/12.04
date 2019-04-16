@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>window</title>
+</head>
+<body>
+    <style>
+    body{
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+    }
+    #windowZ{
+        position: relative;
+        top: 500px;
+        left: 500px;
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        display: flex;
+        border-radius: 5%;
+        align-items: flex-end;
+    }
+    textarea{
+        width: 100px;
+        height: 80px;
+        border : 1px solid #888;
+        border-radius: 5%;
+        outline: none;
+        resize: none;
+        margin: 0;
+        padding: 0;
+    }
+    .move{
+        cursor: move;
+    }
+
+    </style>
+    <div id="windowZ">
+        <textarea name="" id="txt" cols="30" rows="10" readonly></textarea>
+    </div>
+    <script defer>
+        let flag = false;
+        
+        windowZ.addEventListener("mousedown",(e)=>{
+            if (e.target !== txt && e.target == windowZ){
+                document.body.classList.add("move");
+                flag = true;
+            }
+        });
+
+        document.body.addEventListener("mouseup", (e) => {
+            document.body.classList.remove("move");
+
+            if(flag){
+                windowZ.style.cssText = `
+                    top:${e.clientY}px;
+                    left:${e.clientX}px;
+                `;
+                flag = false;
+            }
+        });
+    </script>
+</body>
+</html>
